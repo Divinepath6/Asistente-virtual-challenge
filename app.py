@@ -25,7 +25,6 @@ if "interview_finished" not in st.session_state:
 
 with st.sidebar:
     st.header("⚙️ Opciones")
-    st.markdown("Modelo backend: **Gemini Flash**")
     
     roles_disponibles = [
         "Desarrollador Python Junior", 
@@ -73,13 +72,13 @@ if "client" not in st.session_state or st.session_state.get("current_api_key") !
 if "chat_session" not in st.session_state or st.session_state.get("current_rol") != rol_seleccionado:
     st.session_state.current_rol = rol_seleccionado
     st.session_state.chat_session = st.session_state.client.chats.create(
-        model="gemini-3.8-flash",  
+        model="gemini-2.5-flash",  
         config=CONFIG_INSTRUCCIONES
     )
 
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": f"¡Hola! Soy el Asistente, Seré tu entrevistador para la empresa Nexus Code en la posición de **{rol_seleccionado}**. ¿Cómo te llamas?"}
+        {"role": "assistant", "content": f"¡Hola! Soy el Asistente del tecnico, Seré tu entrevistador para la empresa Nexus Code en la posición de **{rol_seleccionado}**. ¿Cómo te llamas?"}
     ]
 
 
@@ -97,7 +96,7 @@ if not st.session_state.interview_finished:
         with st.chat_message("user"):
             st.markdown(user_input)
         with st.chat_message("assistant"):
-            with st.spinner("Astra está evaluando tu respuesta..."):
+            with st.spinner("Estoy evaluando tu respuesta..."):
                 try:
                     if st.session_state.turn_count >= 3:
                         prompt_modificado = f"{user_input}\n\n[INSTRUCCIÓN DEL SISTEMA: Esta es mi 3.ª y última respuesta. Entrega mi evaluación técnica final completa basándote en mis tres respuestas, concluye la entrevista y no hagas más preguntas.]"
