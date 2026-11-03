@@ -72,7 +72,7 @@ if "client" not in st.session_state or st.session_state.get("current_api_key") !
 if "chat_session" not in st.session_state or st.session_state.get("current_rol") != rol_seleccionado:
     st.session_state.current_rol = rol_seleccionado
     st.session_state.chat_session = st.session_state.client.chats.create(
-        model="gemini-2.5-flash",  
+        model="gemini-3.8-flash",  
         config=CONFIG_INSTRUCCIONES
     )
 
